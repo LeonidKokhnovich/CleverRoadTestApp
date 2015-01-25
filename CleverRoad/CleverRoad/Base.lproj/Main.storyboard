@@ -16,10 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Usm-7Q-iY5">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Usm-7Q-iY5">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="HIb-dC-8fA"/>
+                                    <outletCollection property="gestureRecognizers" destination="jK0-yI-bbX" appends="YES" id="kD0-zu-Hv7"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -32,7 +34,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TlD-MK-42D">
-                        <barButtonItem key="leftBarButtonItem" title="Route" id="s3U-cK-6sn"/>
+                        <barButtonItem key="leftBarButtonItem" title="Route" id="s3U-cK-6sn">
+                            <connections>
+                                <action selector="leftBarButtonTapped:" destination="BYZ-38-t0r" id="Qr3-Jf-uNN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Bookmarks" id="enx-OX-yD4">
                             <connections>
                                 <segue destination="GEt-GR-R9J" kind="show" id="fen-hs-zhi"/>
@@ -45,6 +51,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer delaysTouchesEnded="NO" allowableMovement="10" minimumPressDuration="0.5" id="jK0-yI-bbX">
+                    <connections>
+                        <action selector="onMapViewLongTapEvent:" destination="BYZ-38-t0r" id="gvs-Wa-jp9"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1337" y="1094"/>
         </scene>

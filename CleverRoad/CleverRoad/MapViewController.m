@@ -8,23 +8,45 @@
 
 #import "MapViewController.h"
 
-@interface MapViewController () <CLLocationManagerDelegate>
+typedef NS_ENUM(NSUInteger, MapViewState) {
+    MapViewStateBookmarks, // initialization for free
+    MapViewStateRoute
+};
+
+#define METERS_PER_MILE 1609.344
+
+@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarButton;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) MapViewState mapViewState;
 
 @end
 
 @implementation MapViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    // Setup location manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    if (    SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")
+        &&  [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse)
+    {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    else
+    {
+        [self.locationManager startUpdatingLocation];
+    }
 }
 
 /*
@@ -36,5 +58,78 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+#pragma mark -
+#pragma mark User Actions
+
+- (IBAction)leftBarButtonTapped:(id)sender
+{
+    NSLog(@"Left bar button tapped");
+}
+
+- (IBAction)onMapViewLongTapEvent:(UILongPressGestureRecognizer *)sender
+{
+    if (sender.state != UIGestureRecognizerStateEnded) {
+        return;
+    }
+    
+    NSLog(@"Map view long tap event");
+    
+    // Let's determine the touch location coordinate
+    CGPoint touchPoint = [sender locationInView:self.mapView];
+    CLLocationCoordinate2D touchMapCoordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+    
+    // Create new point annotation
+    MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
+    pointAnnotation.coordinate = touchMapCoordinate;
+    pointAnnotation.title = @"Hello";
+    [self.mapView addAnnotation:pointAnnotation];
+}
+
+#pragma mark -
+#pragma mark CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    NSLog(@"didChangeAuthorizationStatus");
+    
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+        {
+            NSLog(@"User still thinking..");
+        }
+            break;
+            
+        case kCLAuthorizationStatusDenied:
+        {
+            NSLog(@"User hates you");
+        }
+            break;
+            
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        case kCLAuthorizationStatusAuthorizedAlways:
+        {
+            NSLog(@"Cool, we are allowed to track the user");
+            
+            [self.locationManager startUpdatingLocation];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *location = [locations lastObject];
+    NSLog(@"Did update location lat%f - lon%f", location.coordinate.latitude, location.coordinate.longitude);
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+    [self.mapView setRegion:viewRegion];
+    
+    [self.locationManager stopUpdatingLocation];
+}
 
 @end

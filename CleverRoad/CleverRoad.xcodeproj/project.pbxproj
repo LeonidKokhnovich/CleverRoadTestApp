@@ -16,6 +16,7 @@
 		848512E31A75185C001A1DB3 /* CleverRoadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512E21A75185C001A1DB3 /* CleverRoadTests.m */; };
 		848512EF1A751ED4001A1DB3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512EE1A751ED4001A1DB3 /* MapViewController.m */; };
 		848512F21A7520CC001A1DB3 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512F11A7520CC001A1DB3 /* Bookmark.m */; };
+		848512F51A7529D0001A1DB3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848512F41A7529D0001A1DB3 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		848512F01A7520CC001A1DB3 /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
 		848512F11A7520CC001A1DB3 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
 		848512F31A752205001A1DB3 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		848512F41A7529D0001A1DB3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848512F51A7529D0001A1DB3 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +72,7 @@
 		848512B71A75185C001A1DB3 = {
 			isa = PBXGroup;
 			children = (
+				848512F41A7529D0001A1DB3 /* MapKit.framework */,
 				848512C21A75185C001A1DB3 /* CleverRoad */,
 				848512DF1A75185C001A1DB3 /* CleverRoadTests */,
 				848512C11A75185C001A1DB3 /* Products */,
@@ -186,6 +190,7 @@
 				TargetAttributes = {
 					848512BF1A75185C001A1DB3 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = BM22CFCM8L;
 					};
 					848512DB1A75185C001A1DB3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -365,6 +370,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = CleverRoad/PrefixHeader.pch;
 				INFOPLIST_FILE = CleverRoad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -376,6 +382,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = CleverRoad/PrefixHeader.pch;
 				INFOPLIST_FILE = CleverRoad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
