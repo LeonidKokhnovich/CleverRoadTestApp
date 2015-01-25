@@ -1,0 +1,19 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+target 'CleverRoad' do
+
+#platform :ios, '6.0'
+pod 'WYPopoverController', '~> 0.2.2'
+
+#platform :ios, '7.0'
+pod "AFNetworking", "~> 2.0"
+
+pod 'SAMHUDView', '~> 0.1.3'
+
+end
+
+target 'CleverRoadTests' do
+
+end
+

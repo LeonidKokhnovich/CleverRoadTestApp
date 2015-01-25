@@ -1,471 +1,1091 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		848512C61A75185C001A1DB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512C51A75185C001A1DB3 /* main.m */; };
-		848512C91A75185C001A1DB3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512C81A75185C001A1DB3 /* AppDelegate.m */; };
-		848512CC1A75185C001A1DB3 /* CleverRoad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 848512CA1A75185C001A1DB3 /* CleverRoad.xcdatamodeld */; };
-		848512D21A75185C001A1DB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848512D01A75185C001A1DB3 /* Main.storyboard */; };
-		848512D41A75185C001A1DB3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848512D31A75185C001A1DB3 /* Images.xcassets */; };
-		848512D71A75185C001A1DB3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848512D51A75185C001A1DB3 /* LaunchScreen.xib */; };
-		848512E31A75185C001A1DB3 /* CleverRoadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512E21A75185C001A1DB3 /* CleverRoadTests.m */; };
-		848512EF1A751ED4001A1DB3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512EE1A751ED4001A1DB3 /* MapViewController.m */; };
-		848512F51A7529D0001A1DB3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848512F41A7529D0001A1DB3 /* MapKit.framework */; };
-		848513301A7553B8001A1DB3 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 8485132F1A7553B8001A1DB3 /* Bookmark.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		848512DD1A75185C001A1DB3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 848512B81A75185C001A1DB3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 848512BF1A75185C001A1DB3;
-			remoteInfo = CleverRoad;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		848512C01A75185C001A1DB3 /* CleverRoad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverRoad.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		848512C41A75185C001A1DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		848512C51A75185C001A1DB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		848512C71A75185C001A1DB3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		848512C81A75185C001A1DB3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		848512CB1A75185C001A1DB3 /* CleverRoad.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CleverRoad.xcdatamodel; sourceTree = "<group>"; };
-		848512D11A75185C001A1DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		848512D31A75185C001A1DB3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		848512D61A75185C001A1DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		848512DC1A75185C001A1DB3 /* CleverRoadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleverRoadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		848512E11A75185C001A1DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		848512E21A75185C001A1DB3 /* CleverRoadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CleverRoadTests.m; sourceTree = "<group>"; };
-		848512ED1A751ED4001A1DB3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		848512EE1A751ED4001A1DB3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		848512F31A752205001A1DB3 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		848512F41A7529D0001A1DB3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		8485132E1A7553B8001A1DB3 /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
-		8485132F1A7553B8001A1DB3 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		848512BD1A75185C001A1DB3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				848512F51A7529D0001A1DB3 /* MapKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		848512D91A75185C001A1DB3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		848512B71A75185C001A1DB3 = {
-			isa = PBXGroup;
-			children = (
-				848512F41A7529D0001A1DB3 /* MapKit.framework */,
-				848512C21A75185C001A1DB3 /* CleverRoad */,
-				848512DF1A75185C001A1DB3 /* CleverRoadTests */,
-				848512C11A75185C001A1DB3 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		848512C11A75185C001A1DB3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				848512C01A75185C001A1DB3 /* CleverRoad.app */,
-				848512DC1A75185C001A1DB3 /* CleverRoadTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		848512C21A75185C001A1DB3 /* CleverRoad */ = {
-			isa = PBXGroup;
-			children = (
-				848512EC1A751EA8001A1DB3 /* View Controllers */,
-				848512C71A75185C001A1DB3 /* AppDelegate.h */,
-				848512C81A75185C001A1DB3 /* AppDelegate.m */,
-				848512D01A75185C001A1DB3 /* Main.storyboard */,
-				848512D31A75185C001A1DB3 /* Images.xcassets */,
-				848512D51A75185C001A1DB3 /* LaunchScreen.xib */,
-				848512CA1A75185C001A1DB3 /* CleverRoad.xcdatamodeld */,
-				8485132E1A7553B8001A1DB3 /* Bookmark.h */,
-				8485132F1A7553B8001A1DB3 /* Bookmark.m */,
-				848512C31A75185C001A1DB3 /* Supporting Files */,
-			);
-			path = CleverRoad;
-			sourceTree = "<group>";
-		};
-		848512C31A75185C001A1DB3 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				848512C41A75185C001A1DB3 /* Info.plist */,
-				848512C51A75185C001A1DB3 /* main.m */,
-				848512F31A752205001A1DB3 /* PrefixHeader.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		848512DF1A75185C001A1DB3 /* CleverRoadTests */ = {
-			isa = PBXGroup;
-			children = (
-				848512E21A75185C001A1DB3 /* CleverRoadTests.m */,
-				848512E01A75185C001A1DB3 /* Supporting Files */,
-			);
-			path = CleverRoadTests;
-			sourceTree = "<group>";
-		};
-		848512E01A75185C001A1DB3 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				848512E11A75185C001A1DB3 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		848512EC1A751EA8001A1DB3 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				848512ED1A751ED4001A1DB3 /* MapViewController.h */,
-				848512EE1A751ED4001A1DB3 /* MapViewController.m */,
-			);
-			name = "View Controllers";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		848512BF1A75185C001A1DB3 /* CleverRoad */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 848512E61A75185C001A1DB3 /* Build configuration list for PBXNativeTarget "CleverRoad" */;
-			buildPhases = (
-				848512BC1A75185C001A1DB3 /* Sources */,
-				848512BD1A75185C001A1DB3 /* Frameworks */,
-				848512BE1A75185C001A1DB3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CleverRoad;
-			productName = CleverRoad;
-			productReference = 848512C01A75185C001A1DB3 /* CleverRoad.app */;
-			productType = "com.apple.product-type.application";
-		};
-		848512DB1A75185C001A1DB3 /* CleverRoadTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 848512E91A75185C001A1DB3 /* Build configuration list for PBXNativeTarget "CleverRoadTests" */;
-			buildPhases = (
-				848512D81A75185C001A1DB3 /* Sources */,
-				848512D91A75185C001A1DB3 /* Frameworks */,
-				848512DA1A75185C001A1DB3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				848512DE1A75185C001A1DB3 /* PBXTargetDependency */,
-			);
-			name = CleverRoadTests;
-			productName = CleverRoadTests;
-			productReference = 848512DC1A75185C001A1DB3 /* CleverRoadTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		848512B81A75185C001A1DB3 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = leonidkokhnovych;
-				TargetAttributes = {
-					848512BF1A75185C001A1DB3 = {
-						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = BM22CFCM8L;
-					};
-					848512DB1A75185C001A1DB3 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 848512BF1A75185C001A1DB3;
-					};
-				};
-			};
-			buildConfigurationList = 848512BB1A75185C001A1DB3 /* Build configuration list for PBXProject "CleverRoad" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 848512B71A75185C001A1DB3;
-			productRefGroup = 848512C11A75185C001A1DB3 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				848512BF1A75185C001A1DB3 /* CleverRoad */,
-				848512DB1A75185C001A1DB3 /* CleverRoadTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		848512BE1A75185C001A1DB3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				848512D21A75185C001A1DB3 /* Main.storyboard in Resources */,
-				848512D71A75185C001A1DB3 /* LaunchScreen.xib in Resources */,
-				848512D41A75185C001A1DB3 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		848512DA1A75185C001A1DB3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		848512BC1A75185C001A1DB3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				848512C91A75185C001A1DB3 /* AppDelegate.m in Sources */,
-				848512C61A75185C001A1DB3 /* main.m in Sources */,
-				848512CC1A75185C001A1DB3 /* CleverRoad.xcdatamodeld in Sources */,
-				848513301A7553B8001A1DB3 /* Bookmark.m in Sources */,
-				848512EF1A751ED4001A1DB3 /* MapViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		848512D81A75185C001A1DB3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				848512E31A75185C001A1DB3 /* CleverRoadTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		848512DE1A75185C001A1DB3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 848512BF1A75185C001A1DB3 /* CleverRoad */;
-			targetProxy = 848512DD1A75185C001A1DB3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		848512D01A75185C001A1DB3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				848512D11A75185C001A1DB3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		848512D51A75185C001A1DB3 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				848512D61A75185C001A1DB3 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		848512E41A75185C001A1DB3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		848512E51A75185C001A1DB3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		848512E71A75185C001A1DB3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PREFIX_HEADER = CleverRoad/PrefixHeader.pch;
-				INFOPLIST_FILE = CleverRoad/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		848512E81A75185C001A1DB3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PREFIX_HEADER = CleverRoad/PrefixHeader.pch;
-				INFOPLIST_FILE = CleverRoad/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		848512EA1A75185C001A1DB3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = CleverRoadTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleverRoad.app/CleverRoad";
-			};
-			name = Debug;
-		};
-		848512EB1A75185C001A1DB3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = CleverRoadTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleverRoad.app/CleverRoad";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		848512BB1A75185C001A1DB3 /* Build configuration list for PBXProject "CleverRoad" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				848512E41A75185C001A1DB3 /* Debug */,
-				848512E51A75185C001A1DB3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		848512E61A75185C001A1DB3 /* Build configuration list for PBXNativeTarget "CleverRoad" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				848512E71A75185C001A1DB3 /* Debug */,
-				848512E81A75185C001A1DB3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		848512E91A75185C001A1DB3 /* Build configuration list for PBXNativeTarget "CleverRoadTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				848512EA1A75185C001A1DB3 /* Debug */,
-				848512EB1A75185C001A1DB3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-/* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		848512CA1A75185C001A1DB3 /* CleverRoad.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				848512CB1A75185C001A1DB3 /* CleverRoad.xcdatamodel */,
-			);
-			currentVersion = 848512CB1A75185C001A1DB3 /* CleverRoad.xcdatamodel */;
-			path = CleverRoad.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
-	};
-	rootObject = 848512B81A75185C001A1DB3 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>08D0E4073CE2CC3FF2308C88</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-CleverRoad.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>1EE5BEFEEB65031B9162ED24</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-CleverRoad.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-CleverRoad/Pods-CleverRoad.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A839B77F0E3C2F110959D83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>08D0E4073CE2CC3FF2308C88</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4A207F5B26713EE6A8D6F7BC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-CleverRoad/Pods-CleverRoad-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>6E583F10D0032F15861351A1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-CleverRoad.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-CleverRoad/Pods-CleverRoad.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512B71A75185C001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512F41A7529D0001A1DB3</string>
+				<string>848512C21A75185C001A1DB3</string>
+				<string>848512DF1A75185C001A1DB3</string>
+				<string>848512C11A75185C001A1DB3</string>
+				<string>F409D848074DEB02B448DF6F</string>
+				<string>C55075D2D5E3680D6EFAF6FB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512B81A75185C001A1DB3</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0610</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>leonidkokhnovych</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>848512BF1A75185C001A1DB3</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>6.1.1</string>
+						<key>DevelopmentTeam</key>
+						<string>BM22CFCM8L</string>
+					</dict>
+					<key>848512DB1A75185C001A1DB3</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>6.1.1</string>
+						<key>TestTargetID</key>
+						<string>848512BF1A75185C001A1DB3</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>848512BB1A75185C001A1DB3</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>848512B71A75185C001A1DB3</string>
+			<key>productRefGroup</key>
+			<string>848512C11A75185C001A1DB3</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>848512BF1A75185C001A1DB3</string>
+				<string>848512DB1A75185C001A1DB3</string>
+			</array>
+		</dict>
+		<key>848512BB1A75185C001A1DB3</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>848512E41A75185C001A1DB3</string>
+				<string>848512E51A75185C001A1DB3</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>848512BC1A75185C001A1DB3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>848512C91A75185C001A1DB3</string>
+				<string>848512C61A75185C001A1DB3</string>
+				<string>848512CC1A75185C001A1DB3</string>
+				<string>848513301A7553B8001A1DB3</string>
+				<string>848512EF1A751ED4001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>848512BD1A75185C001A1DB3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>848512F51A7529D0001A1DB3</string>
+				<string>3A839B77F0E3C2F110959D83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>848512BE1A75185C001A1DB3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>848512D21A75185C001A1DB3</string>
+				<string>848512D71A75185C001A1DB3</string>
+				<string>848512D41A75185C001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>848512BF1A75185C001A1DB3</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>848512E61A75185C001A1DB3</string>
+			<key>buildPhases</key>
+			<array>
+				<string>BD6E3A469D639BBED2778864</string>
+				<string>848512BC1A75185C001A1DB3</string>
+				<string>848512BD1A75185C001A1DB3</string>
+				<string>848512BE1A75185C001A1DB3</string>
+				<string>4A207F5B26713EE6A8D6F7BC</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>CleverRoad</string>
+			<key>productName</key>
+			<string>CleverRoad</string>
+			<key>productReference</key>
+			<string>848512C01A75185C001A1DB3</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>848512C01A75185C001A1DB3</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>CleverRoad.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>848512C11A75185C001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512C01A75185C001A1DB3</string>
+				<string>848512DC1A75185C001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512C21A75185C001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512EC1A751EA8001A1DB3</string>
+				<string>848512C71A75185C001A1DB3</string>
+				<string>848512C81A75185C001A1DB3</string>
+				<string>848512D01A75185C001A1DB3</string>
+				<string>848512D31A75185C001A1DB3</string>
+				<string>848512D51A75185C001A1DB3</string>
+				<string>848512CA1A75185C001A1DB3</string>
+				<string>8485132E1A7553B8001A1DB3</string>
+				<string>8485132F1A7553B8001A1DB3</string>
+				<string>848512C31A75185C001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>CleverRoad</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512C31A75185C001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512C41A75185C001A1DB3</string>
+				<string>848512C51A75185C001A1DB3</string>
+				<string>848512F31A752205001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512C41A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512C51A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512C61A75185C001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>848512C51A75185C001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>848512C71A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512C81A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512C91A75185C001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>848512C81A75185C001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>848512CA1A75185C001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512CB1A75185C001A1DB3</string>
+			</array>
+			<key>currentVersion</key>
+			<string>848512CB1A75185C001A1DB3</string>
+			<key>isa</key>
+			<string>XCVersionGroup</string>
+			<key>path</key>
+			<string>CleverRoad.xcdatamodeld</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+			<key>versionGroupType</key>
+			<string>wrapper.xcdatamodel</string>
+		</dict>
+		<key>848512CB1A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.xcdatamodel</string>
+			<key>path</key>
+			<string>CleverRoad.xcdatamodel</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512CC1A75185C001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>848512CA1A75185C001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>848512D01A75185C001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512D11A75185C001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512D11A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512D21A75185C001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>848512D01A75185C001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>848512D31A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512D41A75185C001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>848512D31A75185C001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>848512D51A75185C001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512D61A75185C001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512D61A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/LaunchScreen.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512D71A75185C001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>848512D51A75185C001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>848512D81A75185C001A1DB3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>848512E31A75185C001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>848512D91A75185C001A1DB3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>848512DA1A75185C001A1DB3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>848512DB1A75185C001A1DB3</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>848512E91A75185C001A1DB3</string>
+			<key>buildPhases</key>
+			<array>
+				<string>848512D81A75185C001A1DB3</string>
+				<string>848512D91A75185C001A1DB3</string>
+				<string>848512DA1A75185C001A1DB3</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>848512DE1A75185C001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>CleverRoadTests</string>
+			<key>productName</key>
+			<string>CleverRoadTests</string>
+			<key>productReference</key>
+			<string>848512DC1A75185C001A1DB3</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>848512DC1A75185C001A1DB3</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>CleverRoadTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>848512DD1A75185C001A1DB3</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>848512B81A75185C001A1DB3</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>848512BF1A75185C001A1DB3</string>
+			<key>remoteInfo</key>
+			<string>CleverRoad</string>
+		</dict>
+		<key>848512DE1A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>848512BF1A75185C001A1DB3</string>
+			<key>targetProxy</key>
+			<string>848512DD1A75185C001A1DB3</string>
+		</dict>
+		<key>848512DF1A75185C001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512E21A75185C001A1DB3</string>
+				<string>848512E01A75185C001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>CleverRoadTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512E01A75185C001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512E11A75185C001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512E11A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512E21A75185C001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>CleverRoadTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512E31A75185C001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>848512E21A75185C001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>848512E41A75185C001A1DB3</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.1</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>848512E51A75185C001A1DB3</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.1</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>848512E61A75185C001A1DB3</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>848512E71A75185C001A1DB3</string>
+				<string>848512E81A75185C001A1DB3</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>848512E71A75185C001A1DB3</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>6E583F10D0032F15861351A1</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>CleverRoad/PrefixHeader.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>CleverRoad/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>848512E81A75185C001A1DB3</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>1EE5BEFEEB65031B9162ED24</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>CleverRoad/PrefixHeader.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>CleverRoad/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>848512E91A75185C001A1DB3</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>848512EA1A75185C001A1DB3</string>
+				<string>848512EB1A75185C001A1DB3</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>848512EA1A75185C001A1DB3</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>CleverRoadTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/CleverRoad.app/CleverRoad</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>848512EB1A75185C001A1DB3</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>CleverRoadTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/CleverRoad.app/CleverRoad</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>848512EC1A751EA8001A1DB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>848512ED1A751ED4001A1DB3</string>
+				<string>848512EE1A751ED4001A1DB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>View Controllers</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512ED1A751ED4001A1DB3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>MapViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512EE1A751ED4001A1DB3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>MapViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512EF1A751ED4001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>848512EE1A751ED4001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>848512F31A752205001A1DB3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PrefixHeader.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848512F41A7529D0001A1DB3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>MapKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/MapKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>848512F51A7529D0001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>848512F41A7529D0001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8485132E1A7553B8001A1DB3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Bookmark.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8485132F1A7553B8001A1DB3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Bookmark.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>848513301A7553B8001A1DB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8485132F1A7553B8001A1DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BD6E3A469D639BBED2778864</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>C55075D2D5E3680D6EFAF6FB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>08D0E4073CE2CC3FF2308C88</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F409D848074DEB02B448DF6F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6E583F10D0032F15861351A1</string>
+				<string>1EE5BEFEEB65031B9162ED24</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>848512B81A75185C001A1DB3</string>
+</dict>
+</plist>
