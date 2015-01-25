@@ -98,6 +98,7 @@
                     </tableView>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="bookmarksTableView" destination="Obm-Wc-wwD" id="zMc-qV-Qo9"/>
                         <segue destination="jfU-mh-Ezt" kind="show" identifier="Show bookmark details" id="UDa-xM-I5A"/>
                     </connections>
                 </tableViewController>
@@ -129,14 +130,23 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Xxd-Jd-pUj">
                                 <rect key="frame" x="0.0" y="64" width="600" height="484"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="484" id="lyL-eg-lTg"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="jfU-mh-Ezt" id="feK-E2-O0a"/>
                                     <outlet property="delegate" destination="jfU-mh-Ezt" id="nIn-A9-aCa"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BP-Gx-df3">
+                                <rect key="frame" x="16" y="556" width="132" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="MY1-oD-xlm"/>
+                                </constraints>
+                                <state key="normal" title="Center in map view">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="centerInMapViewButtonTapped:" destination="jfU-mh-Ezt" eventType="touchUpInside" id="9zP-lQ-FOo"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keo-DQ-lhS">
                                 <rect key="frame" x="509" y="556" width="75" height="30"/>
                                 <state key="normal" title="Build route">
@@ -144,18 +154,6 @@
                                 </state>
                                 <connections>
                                     <action selector="buildRouteButtonTapped:" destination="jfU-mh-Ezt" eventType="touchUpInside" id="wx1-cV-p0h"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BP-Gx-df3">
-                                <rect key="frame" x="16" y="556" width="143" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="143" id="7cy-Oi-nVB"/>
-                                </constraints>
-                                <state key="normal" title="Center in map view">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="centerInMapViewButtonTapped:" destination="jfU-mh-Ezt" eventType="touchUpInside" id="9zP-lQ-FOo"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -170,7 +168,8 @@
                             <constraint firstItem="keo-DQ-lhS" firstAttribute="trailing" secondItem="gQd-Iv-W8B" secondAttribute="trailingMargin" id="Z6m-yt-AdP"/>
                             <constraint firstItem="2BP-Gx-df3" firstAttribute="leading" secondItem="gQd-Iv-W8B" secondAttribute="leadingMargin" id="fdU-dR-tm6"/>
                             <constraint firstItem="AAS-9a-Kdm" firstAttribute="centerX" secondItem="gQd-Iv-W8B" secondAttribute="centerX" id="goo-Bf-bTm"/>
-                            <constraint firstItem="2BP-Gx-df3" firstAttribute="top" secondItem="Xxd-Jd-pUj" secondAttribute="bottom" constant="8" symbolic="YES" id="oIQ-9g-RHd"/>
+                            <constraint firstItem="cYG-bL-WHI" firstAttribute="top" secondItem="2BP-Gx-df3" secondAttribute="bottom" constant="14" id="h2f-DH-TBu"/>
+                            <constraint firstItem="2BP-Gx-df3" firstAttribute="top" secondItem="Xxd-Jd-pUj" secondAttribute="bottom" constant="8" id="xAJ-Hb-QpP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bookmark name" id="NRN-64-ZMi">

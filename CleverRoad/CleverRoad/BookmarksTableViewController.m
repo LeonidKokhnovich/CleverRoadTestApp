@@ -8,11 +8,16 @@
 
 #import "AppDelegate.h"
 #import "Bookmark.h"
+#import "BookmarkDetailsViewController.h"
 #import "BookmarksTableViewController.h"
 
 #define kSegueNameShowBookmarkDetails @"Show bookmark details"
 
 @interface BookmarksTableViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *bookmarksTableView;
+
+@property (strong, nonatomic) Bookmark *selectedBookmark;
 
 @end
 
@@ -26,6 +31,29 @@
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
     }
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.bookmarksTableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark Navigation
+
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kSegueNameShowBookmarkDetails]) {
+        BookmarkDetailsViewController *viewController = (BookmarkDetailsViewController *)segue.destinationViewController;
+        viewController.fetchedResultsController = self.fetchedResultsController;
+        viewController.bookmark = self.selectedBookmark;
+        
+        self.selectedBookmark = nil;
+    }
+}
+
 
 #pragma mark -
 #pragma mark Table view data source
@@ -63,7 +91,15 @@
     // Let's find bookmark that corresponds to the selected cell
     Bookmark *bookmark = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    [self.delegate bookmarksViewController:self didChooseBookmark:bookmark];
+    if ([self isEmbededInNavigationController]) {
+        self.selectedBookmark = bookmark;
+        
+        // Yep, it is possible to pick bookmark as a sender, but there are some cases in which I wouldn't do that, so just store it for a moment...
+        [self performSegueWithIdentifier:kSegueNameShowBookmarkDetails sender:self];
+    }
+    else {
+        [self.delegate bookmarksViewController:self didChooseBookmark:bookmark];
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -364,8 +364,6 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 - (void)addPointAnnotationToMapViewWithBookmark:(Bookmark *)bookmark
 {
-    NSLog(@"WOW, %@", [NSThread callStackSymbols]);
-    
     if (bookmark) {
         MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
         pointAnnotation.coordinate = bookmark.location.coordinate;

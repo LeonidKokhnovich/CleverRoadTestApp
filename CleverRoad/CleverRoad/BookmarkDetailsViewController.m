@@ -6,10 +6,11 @@
 //  Copyright (c) 2015 leonidkokhnovych. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "Bookmark.h"
 #import "BookmarkDetailsViewController.h"
 
-@interface BookmarkDetailsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface BookmarkDetailsViewController () <UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *loadNearbyPlacesButton;
 @property (weak, nonatomic) IBOutlet UITableView *nearbyPlacesTableView;
@@ -41,6 +42,12 @@
 - (IBAction)deleteButtonTapped:(id)sender
 {
     NSLog(@"Delete button tapped");
+    
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Delete bookmark", nil)
+                                message:NSLocalizedString(@"Are you sure?", nil)
+                               delegate:self
+                      cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                      otherButtonTitles:NSLocalizedString(@"Ok", nil), nil] show];
 }
 
 - (IBAction)loadNearbyPlacesButtonTapped:(id)sender
@@ -56,6 +63,29 @@
 - (IBAction)buildRouteButtonTapped:(id)sender
 {
     NSLog(@"Build route button tapped");
+}
+
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+
+const int kAlertViewConfirmButtonIndex = 1;
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == kAlertViewConfirmButtonIndex) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = appDelegate.managedObjectContext;
+        [context deleteObject:self.bookmark];
+        
+        NSError *error = nil;
+        if (![context save:&error]) {
+#warning Handle error
+            NSLog(@"Error ! %@", error);
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 
