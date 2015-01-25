@@ -48,6 +48,7 @@
                     <connections>
                         <outlet property="leftBarButton" destination="s3U-cK-6sn" id="y5l-Bn-Xry"/>
                         <outlet property="mapView" destination="Usm-7Q-iY5" id="t4c-zf-DWb"/>
+                        <segue destination="CDw-C1-OZh" kind="custom" identifier="Choose destination" customClass="WYStoryboardPopoverSegue" id="lfp-7u-Hhh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -58,6 +59,46 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1337" y="1094"/>
+        </scene>
+        <!--Bookmarks Table View Controller-->
+        <scene sceneID="Ma1-qa-hot">
+            <objects>
+                <tableViewController id="CDw-C1-OZh" customClass="BookmarksTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Obm-Wc-wwD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_identifier" textLabel="Ana-nB-kzj" detailTextLabel="i8K-4n-Kyz" style="IBUITableViewCellStyleSubtitle" id="rac-Sv-OdJ">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rac-Sv-OdJ" id="vtS-Us-nTd">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ana-nB-kzj">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i8K-4n-Kyz">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CDw-C1-OZh" id="gcL-UM-Q7U"/>
+                            <outlet property="delegate" destination="CDw-C1-OZh" id="zhT-yS-v6e"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pe9-lU-6NP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2055" y="421"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="0ab-Wc-n9C">
@@ -75,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UFb-F2-YpH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2019" y="1094"/>
+            <point key="canvasLocation" x="2080" y="1482"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIJ-Qp-8xE">

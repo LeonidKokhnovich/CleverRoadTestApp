@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "Bookmark.h"
+#import "BookmarksTableViewController.h"
 #import "MapViewController.h"
+#import <WYStoryboardPopoverSegue.h>
 
 typedef NS_ENUM(NSUInteger, MapViewState) {
     MapViewStateNone,
@@ -18,7 +20,7 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 #define METERS_PER_MILE 1609.344
 
-@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate>
+@interface MapViewController () <BookmarksTableViewControllerDelegate, CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate, WYPopoverControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarButton;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -30,6 +32,8 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (strong, nonatomic) WYPopoverController *bookmarksTableViewController;
 
 @end
 
@@ -64,15 +68,26 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
     [super viewWillAppear:animated];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark -
+#pragma mark Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Choose destination"]) {
+        BookmarksTableViewController *bookmarksTableViewController = [segue destinationViewController];
+//        bookmarksTableViewController.contentSizeForViewInPopover = CGSizeMake(280, 280);
+        bookmarksTableViewController.delegate = self;
+        bookmarksTableViewController.fetchedResultsController = self.fetchedResultsController;
+        
+        WYStoryboardPopoverSegue* popoverSegue = (WYStoryboardPopoverSegue*)segue;
+        
+        self.bookmarksTableViewController = [popoverSegue popoverControllerWithSender:sender
+                                                        permittedArrowDirections:WYPopoverArrowDirectionAny
+                                                                        animated:YES];
+        self.bookmarksTableViewController.popoverLayoutMargins = UIEdgeInsetsMake(40, 40, 40, 40);
+    }
 }
-*/
 
 
 #pragma mark -
@@ -81,6 +96,13 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 - (IBAction)leftBarButtonTapped:(id)sender
 {
     NSLog(@"Left bar button tapped");
+    
+    if (self.mapViewState == MapViewStateRoute) {
+        self.mapViewState = MapViewStateBookmarks;
+    }
+    else if (self.mapViewState == MapViewStateBookmarks) {
+        [self performSegueWithIdentifier:@"Choose destination" sender:self.leftBarButton];
+    }
 }
 
 - (IBAction)onMapViewLongTapEvent:(UILongPressGestureRecognizer *)sender
@@ -199,6 +221,33 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
             self.leftBarButton.title = NSLocalizedString(@"Clear route", nil);
         }
     }
+}
+
+
+#pragma mark -
+#pragma mark WYPopoverControllerDelegate
+
+- (void)popoverControllerDidDismissPopover:(WYPopoverController *)aPopoverController
+{
+    if (self.bookmarksTableViewController == aPopoverController) {
+        self.bookmarksTableViewController.delegate = nil;
+        self.bookmarksTableViewController = nil;
+    }
+}
+
+
+#pragma mark -
+#pragma mark BookmarksTableViewControllerDelegate
+
+- (void)bookmarksViewController:(BookmarksTableViewController *)controller
+              didChooseBookmark:(Bookmark *)bookmark
+{
+    self.routeDestionationBookmark = bookmark;
+    self.mapViewState = MapViewStateRoute;
+    
+    [self.bookmarksTableViewController dismissPopoverAnimated:YES];
+    self.bookmarksTableViewController.delegate = nil;
+    self.bookmarksTableViewController = nil;
 }
 
 
