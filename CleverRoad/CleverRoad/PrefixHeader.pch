@@ -1,0 +1,14 @@
+//
+//  PrefixHeader.pch
+//  CleverRoad
+//
+//  Created by Admin on 1/25/15.
+//  Copyright (c) 2015 leonidkokhnovych. All rights reserved.
+//
+
+#ifndef CleverRoad_PrefixHeader_pch
+#define CleverRoad_PrefixHeader_pch
+
+@import MapKit;
+
+#endif

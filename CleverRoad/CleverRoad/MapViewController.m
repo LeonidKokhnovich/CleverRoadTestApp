@@ -8,9 +8,7 @@
 
 #import "MapViewController.h"
 
-@import MapKit;
-
-@interface MapViewController ()
+@interface MapViewController () <CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarButton;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
