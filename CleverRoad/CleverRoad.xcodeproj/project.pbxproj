@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A839B77F0E3C2F110959D83 /* libPods-CleverRoad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D0E4073CE2CC3FF2308C88 /* libPods-CleverRoad.a */; };
+		844C29DC1A75998000EDD0CD /* BookmarkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844C29DB1A75998000EDD0CD /* BookmarkDetailsViewController.m */; };
 		848512C61A75185C001A1DB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512C51A75185C001A1DB3 /* main.m */; };
 		848512C91A75185C001A1DB3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512C81A75185C001A1DB3 /* AppDelegate.m */; };
 		848512CC1A75185C001A1DB3 /* CleverRoad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 848512CA1A75185C001A1DB3 /* CleverRoad.xcdatamodeld */; };
@@ -35,6 +36,8 @@
 		08D0E4073CE2CC3FF2308C88 /* libPods-CleverRoad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CleverRoad.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE5BEFEEB65031B9162ED24 /* Pods-CleverRoad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverRoad.release.xcconfig"; path = "Pods/Target Support Files/Pods-CleverRoad/Pods-CleverRoad.release.xcconfig"; sourceTree = "<group>"; };
 		6E583F10D0032F15861351A1 /* Pods-CleverRoad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverRoad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleverRoad/Pods-CleverRoad.debug.xcconfig"; sourceTree = "<group>"; };
+		844C29DA1A75998000EDD0CD /* BookmarkDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkDetailsViewController.h; sourceTree = "<group>"; };
+		844C29DB1A75998000EDD0CD /* BookmarkDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkDetailsViewController.m; sourceTree = "<group>"; };
 		848512C01A75185C001A1DB3 /* CleverRoad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverRoad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848512C41A75185C001A1DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		848512C51A75185C001A1DB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				848512EE1A751ED4001A1DB3 /* MapViewController.m */,
 				848513311A75738A001A1DB3 /* BookmarksTableViewController.h */,
 				848513321A75738A001A1DB3 /* BookmarksTableViewController.m */,
+				844C29DA1A75998000EDD0CD /* BookmarkDetailsViewController.h */,
+				844C29DB1A75998000EDD0CD /* BookmarkDetailsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				848513331A75738A001A1DB3 /* BookmarksTableViewController.m in Sources */,
 				848513301A7553B8001A1DB3 /* Bookmark.m in Sources */,
 				848512EF1A751ED4001A1DB3 /* MapViewController.m in Sources */,
+				844C29DC1A75998000EDD0CD /* BookmarkDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

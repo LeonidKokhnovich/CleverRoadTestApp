@@ -10,6 +10,8 @@
 #import "Bookmark.h"
 #import "BookmarksTableViewController.h"
 
+#define kSegueNameShowBookmarkDetails @"Show bookmark details"
+
 @interface BookmarksTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
