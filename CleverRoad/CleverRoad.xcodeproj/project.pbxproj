@@ -15,8 +15,8 @@
 		848512D71A75185C001A1DB3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848512D51A75185C001A1DB3 /* LaunchScreen.xib */; };
 		848512E31A75185C001A1DB3 /* CleverRoadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512E21A75185C001A1DB3 /* CleverRoadTests.m */; };
 		848512EF1A751ED4001A1DB3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512EE1A751ED4001A1DB3 /* MapViewController.m */; };
-		848512F21A7520CC001A1DB3 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 848512F11A7520CC001A1DB3 /* Bookmark.m */; };
 		848512F51A7529D0001A1DB3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848512F41A7529D0001A1DB3 /* MapKit.framework */; };
+		848513301A7553B8001A1DB3 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 8485132F1A7553B8001A1DB3 /* Bookmark.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +44,10 @@
 		848512E21A75185C001A1DB3 /* CleverRoadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CleverRoadTests.m; sourceTree = "<group>"; };
 		848512ED1A751ED4001A1DB3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		848512EE1A751ED4001A1DB3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		848512F01A7520CC001A1DB3 /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
-		848512F11A7520CC001A1DB3 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
 		848512F31A752205001A1DB3 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		848512F41A7529D0001A1DB3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8485132E1A7553B8001A1DB3 /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
+		8485132F1A7553B8001A1DB3 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +98,8 @@
 				848512D31A75185C001A1DB3 /* Images.xcassets */,
 				848512D51A75185C001A1DB3 /* LaunchScreen.xib */,
 				848512CA1A75185C001A1DB3 /* CleverRoad.xcdatamodeld */,
-				848512F01A7520CC001A1DB3 /* Bookmark.h */,
-				848512F11A7520CC001A1DB3 /* Bookmark.m */,
+				8485132E1A7553B8001A1DB3 /* Bookmark.h */,
+				8485132F1A7553B8001A1DB3 /* Bookmark.m */,
 				848512C31A75185C001A1DB3 /* Supporting Files */,
 			);
 			path = CleverRoad;
@@ -245,7 +245,7 @@
 				848512C91A75185C001A1DB3 /* AppDelegate.m in Sources */,
 				848512C61A75185C001A1DB3 /* main.m in Sources */,
 				848512CC1A75185C001A1DB3 /* CleverRoad.xcdatamodeld in Sources */,
-				848512F21A7520CC001A1DB3 /* Bookmark.m in Sources */,
+				848513301A7553B8001A1DB3 /* Bookmark.m in Sources */,
 				848512EF1A751ED4001A1DB3 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

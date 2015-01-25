@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 leonidkokhnovych. All rights reserved.
 //
 
+#import "AppDelegate.h"
+#import "Bookmark.h"
 #import "MapViewController.h"
 
 typedef NS_ENUM(NSUInteger, MapViewState) {
@@ -15,13 +17,16 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 #define METERS_PER_MILE 1609.344
 
-@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarButton;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) MapViewState mapViewState;
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -46,6 +51,10 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
     else
     {
         [self.locationManager startUpdatingLocation];
+    }
+
+    for (Bookmark *bookmark in self.fetchedResultsController.fetchedObjects) {
+        [self addPointAnnotationToMapViewWithBookmark:bookmark];
     }
 }
 
@@ -79,21 +88,78 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
     // Let's determine the touch location coordinate
     CGPoint touchPoint = [sender locationInView:self.mapView];
     CLLocationCoordinate2D touchMapCoordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
     
-    // Create new point annotation
-    MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
-    pointAnnotation.coordinate = touchMapCoordinate;
-    pointAnnotation.title = @"Hello";
-    [self.mapView addAnnotation:pointAnnotation];
+    // Store new annotation
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bookmark" inManagedObjectContext:self.managedObjectContext];
+    Bookmark *bookmark = [[Bookmark alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    bookmark.location = location;
+    bookmark.date = [NSDate date];
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![context save:&error]) {
+#warning TODO: need to process error
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
 }
+
+
+#pragma mark -
+#pragma mark Accessory Methods
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+    if (!_managedObjectContext) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        _managedObjectContext = appDelegate.managedObjectContext;
+    }
+    return _managedObjectContext;
+}
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bookmark"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+    NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    NSArray *sortDescriptors = @[nameSortDescriptor, dateSortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                    managedObjectContext:self.managedObjectContext
+                                                                      sectionNameKeyPath:nil
+                                                                               cacheName:nil];
+    _fetchedResultsController.delegate = self;
+    
+    NSError *error = nil;
+    if (![_fetchedResultsController performFetch:&error]) {
+#warning TODO: need to process error
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
+    
+    return _fetchedResultsController;
+}
+
 
 #pragma mark -
 #pragma mark CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    NSLog(@"didChangeAuthorizationStatus");
-    
     switch (status) {
         case kCLAuthorizationStatusNotDetermined:
         {
@@ -126,10 +192,55 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
     CLLocation *location = [locations lastObject];
     NSLog(@"Did update location lat%f - lon%f", location.coordinate.latitude, location.coordinate.longitude);
     
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, METERS_PER_MILE, METERS_PER_MILE);
     [self.mapView setRegion:viewRegion];
     
+    // Since app requirements are not fully clear if we need to track user's location continiously, let's stop updating user location
     [self.locationManager stopUpdatingLocation];
+}
+
+
+#pragma mark -
+#pragma mark MKMapViewDelegate
+
+
+#pragma mark -
+#pragma mark NSFetchedResultsControllerDelegate
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    NSLog(@"NSFetchedResultsControllerDelegate did change object %@, change type %d", anObject, type);
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+        {
+            if ([anObject isKindOfClass:[Bookmark class]]) {
+                [self addPointAnnotationToMapViewWithBookmark:anObject];
+            }
+        }
+            break;
+    }
+}
+
+
+#pragma mark -
+#pragma mark Helper Methods
+
+- (void)addPointAnnotationToMapViewWithBookmark:(Bookmark *)bookmark
+{
+    if (bookmark) {
+        MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
+        pointAnnotation.coordinate = bookmark.location.coordinate;
+        pointAnnotation.title = bookmark.name;
+        [self.mapView addAnnotation:pointAnnotation];
+    }
+    else {
+        NSLog(@"Could't process empty bookmark");
+    }
 }
 
 @end

@@ -9,6 +9,7 @@
 #ifndef CleverRoad_PrefixHeader_pch
 #define CleverRoad_PrefixHeader_pch
 
+@import CoreData;
 @import MapKit;
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)

@@ -13,5 +13,6 @@
 
 @dynamic name;
 @dynamic location;
+@dynamic date;
 
 @end

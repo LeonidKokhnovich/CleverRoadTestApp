@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+
 @interface Bookmark : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) CLLocation *location;
+@property (nonatomic, retain) NSDate * date;
 
 @end
