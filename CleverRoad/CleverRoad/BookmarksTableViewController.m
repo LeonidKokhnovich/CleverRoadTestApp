@@ -6,33 +6,36 @@
 //  Copyright (c) 2015 leonidkokhnovych. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "Bookmark.h"
 #import "BookmarksTableViewController.h"
 
-@interface BookmarksTableViewController ()
+@interface BookmarksTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
 @implementation BookmarksTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if ([self isEmbededInNavigationController]) {
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    }
 }
 
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return [self.fetchedResultsController.fetchedObjects count];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *cellIdentifier = @"cell_identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
@@ -47,6 +50,7 @@
     return cell;
 }
 
+
 #pragma mark -
 #pragma mark UITableViewDelegate
 
@@ -58,6 +62,39 @@
     Bookmark *bookmark = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     [self.delegate bookmarksViewController:self didChooseBookmark:bookmark];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLocalizedString(@"Remove", nil);
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = appDelegate.managedObjectContext;
+        Bookmark *bookmark = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [context deleteObject:bookmark];
+        
+        NSError * error = nil;
+        if (![context save:&error]) {
+#warning Handle error
+            NSLog(@"Error ! %@", error);
+        }
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+
+#pragma mark -
+#pragma mark Helper Methods
+
+- (BOOL)isEmbededInNavigationController
+{
+    // TODO: Refactor
+    return self.navigationController ? YES : NO;
 }
 
 @end

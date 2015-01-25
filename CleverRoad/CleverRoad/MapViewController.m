@@ -20,6 +20,9 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 #define METERS_PER_MILE 1609.344
 
+#define kSegueNameChooseDestionation @"Choose destination"
+#define kSegueNameShowBookmarks @"Show bookmarks"
+
 @interface MapViewController () <BookmarksTableViewControllerDelegate, CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate, WYPopoverControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarButton;
@@ -74,9 +77,8 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"Choose destination"]) {
+    if ([segue.identifier isEqualToString:kSegueNameChooseDestionation]) {
         BookmarksTableViewController *bookmarksTableViewController = [segue destinationViewController];
-//        bookmarksTableViewController.contentSizeForViewInPopover = CGSizeMake(280, 280);
         bookmarksTableViewController.delegate = self;
         bookmarksTableViewController.fetchedResultsController = self.fetchedResultsController;
         
@@ -86,6 +88,10 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
                                                         permittedArrowDirections:WYPopoverArrowDirectionAny
                                                                         animated:YES];
         self.bookmarksTableViewController.popoverLayoutMargins = UIEdgeInsetsMake(40, 40, 40, 40);
+    }
+    else if ([segue.identifier isEqualToString:kSegueNameShowBookmarks]) {
+        BookmarksTableViewController *bookmarksTableViewController = [segue destinationViewController];
+        bookmarksTableViewController.fetchedResultsController = self.fetchedResultsController;
     }
 }
 
@@ -101,7 +107,7 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
         self.mapViewState = MapViewStateBookmarks;
     }
     else if (self.mapViewState == MapViewStateBookmarks) {
-        [self performSegueWithIdentifier:@"Choose destination" sender:self.leftBarButton];
+        [self performSegueWithIdentifier:kSegueNameChooseDestionation sender:self.leftBarButton];
     }
 }
 
@@ -326,6 +332,29 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
             }
         }
             break;
+            
+        case NSFetchedResultsChangeDelete:
+        {
+            if ([anObject isKindOfClass:[Bookmark class]]) {
+                Bookmark *bookmark = (Bookmark *)anObject;
+                
+                // Let's find point annotation that corresponds to the deleted bookmark
+                MKPointAnnotation *bookmarkPointAnnotation;
+                
+                for (MKPointAnnotation *pointAnnotation in self.mapView.annotations) {
+                    if (CLCOORDINATES_EQUAL(pointAnnotation.coordinate, bookmark.location.coordinate)) {
+                        bookmarkPointAnnotation = pointAnnotation;
+                        break;
+                    }
+                }
+                
+                // Remove item from map view
+                if (bookmarkPointAnnotation) {
+                    [self.mapView removeAnnotation:bookmarkPointAnnotation];
+                }
+            }
+        }
+            break;
     }
 }
 
@@ -335,6 +364,8 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 - (void)addPointAnnotationToMapViewWithBookmark:(Bookmark *)bookmark
 {
+    NSLog(@"WOW, %@", [NSThread callStackSymbols]);
+    
     if (bookmark) {
         MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
         pointAnnotation.coordinate = bookmark.location.coordinate;
