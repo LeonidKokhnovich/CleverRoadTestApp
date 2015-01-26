@@ -156,19 +156,36 @@
                                     <action selector="buildRouteButtonTapped:" destination="jfU-mh-Ezt" eventType="touchUpInside" id="wx1-cV-p0h"/>
                                 </connections>
                             </button>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3XI-8c-tPZ" userLabel="Overlay">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Kdp-GW-euq">
+                                        <rect key="frame" x="290" y="258" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Kdp-GW-euq" firstAttribute="centerY" secondItem="3XI-8c-tPZ" secondAttribute="centerY" id="fUw-BU-5eU"/>
+                                    <constraint firstItem="Kdp-GW-euq" firstAttribute="centerX" secondItem="3XI-8c-tPZ" secondAttribute="centerX" id="yTC-mf-4NV"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Xxd-Jd-pUj" firstAttribute="top" secondItem="weq-gm-vWZ" secondAttribute="bottom" id="1O0-SS-zrF"/>
                             <constraint firstItem="2BP-Gx-df3" firstAttribute="baseline" secondItem="keo-DQ-lhS" secondAttribute="baseline" id="Bee-Ko-UbN"/>
+                            <constraint firstItem="3XI-8c-tPZ" firstAttribute="leading" secondItem="Xxd-Jd-pUj" secondAttribute="leading" id="C3Y-aL-c7s"/>
                             <constraint firstItem="AAS-9a-Kdm" firstAttribute="top" secondItem="weq-gm-vWZ" secondAttribute="bottom" constant="8" symbolic="YES" id="L2W-7n-1qh"/>
                             <constraint firstItem="keo-DQ-lhS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2BP-Gx-df3" secondAttribute="trailing" constant="10" id="LUw-Oz-FaW"/>
+                            <constraint firstItem="3XI-8c-tPZ" firstAttribute="trailing" secondItem="Xxd-Jd-pUj" secondAttribute="trailing" id="MMl-qe-Brf"/>
                             <constraint firstItem="Xxd-Jd-pUj" firstAttribute="centerX" secondItem="AAS-9a-Kdm" secondAttribute="centerX" id="NOI-HT-VL8"/>
                             <constraint firstItem="Xxd-Jd-pUj" firstAttribute="leading" secondItem="gQd-Iv-W8B" secondAttribute="leading" id="UH8-k7-Oiq"/>
                             <constraint firstItem="keo-DQ-lhS" firstAttribute="trailing" secondItem="gQd-Iv-W8B" secondAttribute="trailingMargin" id="Z6m-yt-AdP"/>
+                            <constraint firstItem="3XI-8c-tPZ" firstAttribute="top" secondItem="Xxd-Jd-pUj" secondAttribute="top" id="aBV-8g-Xqc"/>
                             <constraint firstItem="2BP-Gx-df3" firstAttribute="leading" secondItem="gQd-Iv-W8B" secondAttribute="leadingMargin" id="fdU-dR-tm6"/>
                             <constraint firstItem="AAS-9a-Kdm" firstAttribute="centerX" secondItem="gQd-Iv-W8B" secondAttribute="centerX" id="goo-Bf-bTm"/>
                             <constraint firstItem="cYG-bL-WHI" firstAttribute="top" secondItem="2BP-Gx-df3" secondAttribute="bottom" constant="14" id="h2f-DH-TBu"/>
+                            <constraint firstItem="3XI-8c-tPZ" firstAttribute="bottom" secondItem="cYG-bL-WHI" secondAttribute="top" id="o7Y-XU-sfg"/>
                             <constraint firstItem="2BP-Gx-df3" firstAttribute="top" secondItem="Xxd-Jd-pUj" secondAttribute="bottom" constant="8" id="xAJ-Hb-QpP"/>
                         </constraints>
                     </view>
@@ -180,8 +197,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="Kdp-GW-euq" id="aJj-AG-L5A"/>
                         <outlet property="loadNearbyPlacesButton" destination="AAS-9a-Kdm" id="fgD-Ny-hP7"/>
                         <outlet property="nearbyPlacesTableView" destination="Xxd-Jd-pUj" id="XMm-y1-M91"/>
+                        <outlet property="overlayView" destination="3XI-8c-tPZ" id="t1H-bC-LKE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezU-2f-T9P" userLabel="First Responder" sceneMemberID="firstResponder"/>
