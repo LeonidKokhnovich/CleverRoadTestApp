@@ -31,7 +31,6 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) MapViewState mapViewState;
 @property (strong, nonatomic) MKRoute *route;
-@property (strong, nonatomic) Bookmark *routeDestionationBookmark;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -69,6 +68,14 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (self.centerAlignmentLocation) {
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.centerAlignmentLocation.coordinate, METERS_PER_MILE, METERS_PER_MILE);
+        [self.mapView setRegion:viewRegion];
+        
+        // Clean up
+        self.centerAlignmentLocation = nil;
+    }
 }
 
 

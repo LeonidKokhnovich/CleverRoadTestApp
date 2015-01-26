@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Bookmark.h"
 #import "BookmarkDetailsViewController.h"
+#import "MapViewController.h"
 
 #define kFoursquareVenuesExploreLink @"https://api.foursquare.com/v2/venues/explore"
 #define kFoursquareAppClientID @"TDX3TTDKQDCJXZQI04R552OZEO1ANHULEWPNSBZIBUZGLPL5"
@@ -77,6 +78,20 @@
 - (IBAction)centerInMapViewButtonTapped:(id)sender
 {
     NSLog(@"Center in map view button tapped");
+    
+    UIViewController *rootViewController = [self.navigationController.viewControllers firstObject];
+    if ([rootViewController isKindOfClass:[MapViewController class]]) {
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:self.bookmark.location.coordinate.latitude
+                                                          longitude:self.bookmark.location.coordinate.longitude];
+        
+        MapViewController *mapViewController = (MapViewController *)rootViewController;
+        mapViewController.centerAlignmentLocation = location;
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else {
+        NSLog(@"Couldn't show map view, root view controller class is %@", NSStringFromClass([rootViewController class]));
+    }
 }
 
 - (IBAction)buildRouteButtonTapped:(id)sender

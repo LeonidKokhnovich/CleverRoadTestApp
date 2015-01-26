@@ -10,4 +10,7 @@
 
 @interface MapViewController : UIViewController
 
+@property (strong, nonatomic) CLLocation *centerAlignmentLocation;
+@property (strong, nonatomic) Bookmark *routeDestionationBookmark;
+
 @end
