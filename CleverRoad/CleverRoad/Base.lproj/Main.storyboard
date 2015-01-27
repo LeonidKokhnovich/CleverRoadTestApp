@@ -69,6 +69,7 @@
                         <outlet property="mapView" destination="Usm-7Q-iY5" id="t4c-zf-DWb"/>
                         <outlet property="overlayView" destination="zyr-RG-nTx" id="JoE-6C-Sap"/>
                         <segue destination="CDw-C1-OZh" kind="custom" identifier="Choose destination" customClass="WYStoryboardPopoverSegue" id="lfp-7u-Hhh"/>
+                        <segue destination="jfU-mh-Ezt" kind="show" identifier="Show bookmark details" id="J5l-hh-4LF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -123,7 +124,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pe9-lU-6NP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2161" y="1094"/>
+            <point key="canvasLocation" x="2124" y="1632"/>
         </scene>
         <!--Bookmark name-->
         <scene sceneID="gdm-pr-Bdv">
@@ -246,6 +247,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="J5l-hh-4LF"/>
         <segue reference="yad-D6-ovp"/>
     </inferredMetricsTieBreakers>
 </document>

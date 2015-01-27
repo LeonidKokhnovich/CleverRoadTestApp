@@ -12,7 +12,6 @@
 
 @interface BookmarkDetailsViewController : UIViewController
 
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) Bookmark *bookmark;
 
 @end

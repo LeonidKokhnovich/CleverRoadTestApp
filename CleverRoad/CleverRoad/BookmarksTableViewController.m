@@ -47,7 +47,6 @@
 {
     if ([segue.identifier isEqualToString:kSegueNameShowBookmarkDetails]) {
         BookmarkDetailsViewController *viewController = (BookmarkDetailsViewController *)segue.destinationViewController;
-        viewController.fetchedResultsController = self.fetchedResultsController;
         viewController.bookmark = self.selectedBookmark;
         
         self.selectedBookmark = nil;

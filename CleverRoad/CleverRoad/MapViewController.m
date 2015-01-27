@@ -8,12 +8,14 @@
 
 #import "AppDelegate.h"
 #import "Bookmark.h"
+#import "BookmarkDetailsViewController.h"
 #import "BookmarksTableViewController.h"
 #import "MapViewController.h"
 #import <WYStoryboardPopoverSegue.h>
 
 #define kSegueNameChooseDestionation @"Choose destination"
 #define kSegueNameShowBookmarks @"Show bookmarks"
+#define kSegueNameShowBookmarkDetails @"Show bookmark details"
 
 @interface MapViewController () <BookmarksTableViewControllerDelegate, CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate, WYPopoverControllerDelegate>
 
@@ -29,6 +31,8 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (strong, nonatomic) WYPopoverController *bookmarksTableViewController;
+
+@property (strong, nonatomic) Bookmark *selectedBookmark;
 
 @end
 
@@ -88,6 +92,12 @@
     else if ([segue.identifier isEqualToString:kSegueNameShowBookmarks]) {
         BookmarksTableViewController *bookmarksTableViewController = [segue destinationViewController];
         bookmarksTableViewController.fetchedResultsController = self.fetchedResultsController;
+    }
+    else if ([segue.identifier isEqualToString:kSegueNameShowBookmarkDetails]) {
+        BookmarkDetailsViewController *viewController = (BookmarkDetailsViewController *)segue.destinationViewController;
+        viewController.bookmark = self.selectedBookmark;
+        
+        self.selectedBookmark = nil;
     }
 }
 
@@ -323,6 +333,49 @@
     return routeLineRenderer;
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    
+    static NSString *annotationViewReuseIdentifier = @"annotationViewReuseIdentifier";
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:annotationViewReuseIdentifier];
+    
+    if (annotationView == nil) {
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                                         reuseIdentifier:annotationViewReuseIdentifier];
+        annotationView.canShowCallout = YES;
+        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    }
+    else {
+        annotationView.annotation = annotation;
+    }
+    
+    return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    [mapView deselectAnnotation:view.annotation animated:YES];
+    
+    // Find corresponding bookmark
+    for (Bookmark *bookmark in self.fetchedResultsController.fetchedObjects) {
+        if (CLCOORDINATES_EQUAL(view.annotation.coordinate, bookmark.location.coordinate)) {
+            self.selectedBookmark = bookmark;
+            break;
+        }
+    }
+    
+    if (self.selectedBookmark) {
+        [self performSegueWithIdentifier:kSegueNameShowBookmarkDetails sender:view];
+    }
+    else {
+        NSLog(@"No corresponding bookmark, couldn't open its details");
+    }
+}
+
+
 #pragma mark -
 #pragma mark NSFetchedResultsControllerDelegate
 
@@ -339,6 +392,27 @@
         {
             if ([anObject isKindOfClass:[Bookmark class]]) {
                 [self addPointAnnotationToMapViewWithBookmark:anObject];
+            }
+        }
+            break;
+            
+        case NSFetchedResultsChangeMove:
+        {
+            if ([anObject isKindOfClass:[Bookmark class]]) {
+                Bookmark *bookmark = (Bookmark *)anObject;
+                MKPointAnnotation *bookmarkPointAnnotation;
+                
+                for (MKPointAnnotation *pointAnnotation in self.mapView.annotations) {
+                    if (CLCOORDINATES_EQUAL(pointAnnotation.coordinate, bookmark.location.coordinate)) {
+                        bookmarkPointAnnotation = pointAnnotation;
+                        break;
+                    }
+                }
+                
+                // Remove item from map view
+                if (bookmarkPointAnnotation) {
+                    bookmarkPointAnnotation.title = bookmark.name ? : NSLocalizedString(@"No name", nil);
+                }
             }
         }
             break;
@@ -388,7 +462,7 @@
     if (bookmark) {
         MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
         pointAnnotation.coordinate = bookmark.location.coordinate;
-        pointAnnotation.title = bookmark.name;
+        pointAnnotation.title = bookmark.name ? : NSLocalizedString(@"No name", nil);
         [self.mapView addAnnotation:pointAnnotation];
     }
     else {
