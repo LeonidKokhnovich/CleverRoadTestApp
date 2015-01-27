@@ -113,6 +113,7 @@
         self.mapViewState = MapViewStateBookmarks;
     }
     else if (self.mapViewState == MapViewStateBookmarks) {
+#warning There are some UI issues with compatibility of Size classes and WYCustomSegue, need further investigation
         [self performSegueWithIdentifier:kSegueNameChooseDestionation sender:self.leftBarButton];
     }
 }
