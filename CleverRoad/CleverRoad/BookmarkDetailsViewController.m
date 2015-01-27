@@ -81,11 +81,12 @@
     
     UIViewController *rootViewController = [self.navigationController.viewControllers firstObject];
     if ([rootViewController isKindOfClass:[MapViewController class]]) {
-        CLLocation *location = [[CLLocation alloc] initWithLatitude:self.bookmark.location.coordinate.latitude
-                                                          longitude:self.bookmark.location.coordinate.longitude];
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.bookmark.location.coordinate, METERS_PER_MILE, METERS_PER_MILE);
         
         MapViewController *mapViewController = (MapViewController *)rootViewController;
-        mapViewController.centerAlignmentLocation = location;
+        // Not sure if we need to center only in bookmarks map view mode, but let's suppose that it needs to
+        mapViewController.mapViewState = MapViewStateBookmarks;
+        [mapViewController setMapViewVisibleRegion:viewRegion];
         
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
@@ -97,6 +98,20 @@
 - (IBAction)buildRouteButtonTapped:(id)sender
 {
     NSLog(@"Build route button tapped");
+    
+    UIViewController *rootViewController = [self.navigationController.viewControllers firstObject];
+    if ([rootViewController isKindOfClass:[MapViewController class]])
+    {
+        MapViewController *mapViewController = (MapViewController *)rootViewController;
+        mapViewController.routeDestionationBookmark = self.bookmark;
+        mapViewController.mapViewState = MapViewStateRoute;
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else
+    {
+        NSLog(@"Couldn't show map view, root view controller class is %@", NSStringFromClass([rootViewController class]));
+    }
 }
 
 

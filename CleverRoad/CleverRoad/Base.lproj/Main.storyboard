@@ -25,13 +25,30 @@
                                     <outletCollection property="gestureRecognizers" destination="jK0-yI-bbX" appends="YES" id="kD0-zu-Hv7"/>
                                 </connections>
                             </mapView>
+                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyr-RG-nTx" userLabel="Overlay">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Bez-Qw-HMl">
+                                        <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Bez-Qw-HMl" firstAttribute="centerY" secondItem="zyr-RG-nTx" secondAttribute="centerY" id="SEm-yr-mhn"/>
+                                    <constraint firstItem="Bez-Qw-HMl" firstAttribute="centerX" secondItem="zyr-RG-nTx" secondAttribute="centerX" id="bjX-NP-CCU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Usm-7Q-iY5" secondAttribute="trailing" id="31W-jV-xWg"/>
                             <constraint firstItem="Usm-7Q-iY5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3bY-Cw-QQ3"/>
+                            <constraint firstItem="zyr-RG-nTx" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Mfy-Mq-cK6"/>
                             <constraint firstItem="Usm-7Q-iY5" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Yx4-wC-oxp"/>
+                            <constraint firstItem="zyr-RG-nTx" firstAttribute="leading" secondItem="Usm-7Q-iY5" secondAttribute="leading" id="ZNd-qN-ex6"/>
                             <constraint firstItem="Usm-7Q-iY5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ddW-28-PWs"/>
+                            <constraint firstItem="zyr-RG-nTx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gSG-U1-C5C"/>
+                            <constraint firstItem="zyr-RG-nTx" firstAttribute="trailing" secondItem="Usm-7Q-iY5" secondAttribute="trailing" id="veB-Mp-JcN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TlD-MK-42D">
@@ -47,8 +64,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="Bez-Qw-HMl" id="MgI-1e-Ala"/>
                         <outlet property="leftBarButton" destination="s3U-cK-6sn" id="y5l-Bn-Xry"/>
                         <outlet property="mapView" destination="Usm-7Q-iY5" id="t4c-zf-DWb"/>
+                        <outlet property="overlayView" destination="zyr-RG-nTx" id="JoE-6C-Sap"/>
                         <segue destination="CDw-C1-OZh" kind="custom" identifier="Choose destination" customClass="WYStoryboardPopoverSegue" id="lfp-7u-Hhh"/>
                     </connections>
                 </viewController>
@@ -156,14 +175,14 @@
                                     <action selector="buildRouteButtonTapped:" destination="jfU-mh-Ezt" eventType="touchUpInside" id="wx1-cV-p0h"/>
                                 </connections>
                             </button>
-                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3XI-8c-tPZ" userLabel="Overlay">
+                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3XI-8c-tPZ" userLabel="Overlay">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Kdp-GW-euq">
                                         <rect key="frame" x="290" y="258" width="20" height="20"/>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Kdp-GW-euq" firstAttribute="centerY" secondItem="3XI-8c-tPZ" secondAttribute="centerY" id="fUw-BU-5eU"/>
                                     <constraint firstItem="Kdp-GW-euq" firstAttribute="centerX" secondItem="3XI-8c-tPZ" secondAttribute="centerX" id="yTC-mf-4NV"/>

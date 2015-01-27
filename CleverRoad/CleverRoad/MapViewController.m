@@ -12,14 +12,6 @@
 #import "MapViewController.h"
 #import <WYStoryboardPopoverSegue.h>
 
-typedef NS_ENUM(NSUInteger, MapViewState) {
-    MapViewStateNone,
-    MapViewStateBookmarks,
-    MapViewStateRoute
-};
-
-#define METERS_PER_MILE 1609.344
-
 #define kSegueNameChooseDestionation @"Choose destination"
 #define kSegueNameShowBookmarks @"Show bookmarks"
 
@@ -27,9 +19,10 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarButton;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIView *overlayView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (nonatomic) MapViewState mapViewState;
 @property (strong, nonatomic) MKRoute *route;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
@@ -65,17 +58,13 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
     self.mapViewState = MapViewStateBookmarks;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)setMapViewVisibleRegion:(MKCoordinateRegion)region
 {
-    [super viewWillAppear:animated];
-    
-    if (self.centerAlignmentLocation) {
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.centerAlignmentLocation.coordinate, METERS_PER_MILE, METERS_PER_MILE);
-        [self.mapView setRegion:viewRegion];
-        
-        // Clean up
-        self.centerAlignmentLocation = nil;
-    }
+    [self.mapView setRegion:region];
 }
 
 
@@ -120,7 +109,7 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 - (IBAction)onMapViewLongTapEvent:(UILongPressGestureRecognizer *)sender
 {
-    if (sender.state != UIGestureRecognizerStateEnded) {
+    if (sender.state != UIGestureRecognizerStateBegan) {
         return;
     }
     
@@ -197,42 +186,56 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
 
 - (void)setMapViewState:(MapViewState)mapViewState
 {
-    if (_mapViewState != mapViewState) {
-        _mapViewState = mapViewState;
+    _mapViewState = mapViewState;
+    
+    if (self.mapViewState == MapViewStateBookmarks) {
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        [self.mapView removeOverlay:self.route.polyline];
         
-        if (self.mapViewState == MapViewStateBookmarks) {
-            [self.mapView removeOverlay:self.route.polyline];
+        for (Bookmark *bookmark in self.fetchedResultsController.fetchedObjects) {
+            [self addPointAnnotationToMapViewWithBookmark:bookmark];
+        }
+        
+        self.leftBarButton.title = NSLocalizedString(@"Route", nil);
+    }
+    else {
+        NSAssert(self.routeDestionationBookmark != nil, @"Destination is not specified.");
+        
+        // Prepare UI
+        self.overlayView.hidden = NO;
+        
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        [self addPointAnnotationToMapViewWithBookmark:self.routeDestionationBookmark];
+        
+        // Create route between current location and selected point annotation
+        MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc] init];
+        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:self.routeDestionationBookmark.location.coordinate addressDictionary:nil];
+        [directionsRequest setSource:[MKMapItem mapItemForCurrentLocation]];
+        [directionsRequest setDestination:[[MKMapItem alloc] initWithPlacemark:placemark]];
+        directionsRequest.transportType = MKDirectionsTransportTypeAutomobile;
+        MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
+        [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+            // Update UI
+            self.overlayView.hidden = YES;
             
-            for (Bookmark *bookmark in self.fetchedResultsController.fetchedObjects) {
-                [self addPointAnnotationToMapViewWithBookmark:bookmark];
+            if (error) {
+                NSLog(@"Error %@", error.description);
+                
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Network error", nil)
+                                            message:NSLocalizedString(@"Please, try later again", nil)
+                                           delegate:nil
+                                  cancelButtonTitle:NSLocalizedString(@"Ok", nil)
+                                  otherButtonTitles:nil, nil] show];
+                
+                self.routeDestionationBookmark = nil;
+                self.mapViewState = MapViewStateBookmarks;
+            } else {
+                self.route = response.routes.lastObject;
+                [self.mapView addOverlay:self.route.polyline];
             }
-            
-            self.leftBarButton.title = NSLocalizedString(@"Route", nil);
-        }
-        else {
-            NSAssert(self.routeDestionationBookmark != nil, @"Destination is not specified.");
-            
-            [self.mapView removeAnnotations:self.mapView.annotations];
-            [self addPointAnnotationToMapViewWithBookmark:self.routeDestionationBookmark];
-            
-            // Create route between current location and selected point annotation
-            MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc] init];
-            MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:self.routeDestionationBookmark.location.coordinate addressDictionary:nil];
-            [directionsRequest setSource:[MKMapItem mapItemForCurrentLocation]];
-            [directionsRequest setDestination:[[MKMapItem alloc] initWithPlacemark:placemark]];
-            directionsRequest.transportType = MKDirectionsTransportTypeAutomobile;
-            MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
-            [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
-                if (error) {
-                    NSLog(@"Error %@", error.description);
-                } else {
-                    self.route = response.routes.lastObject;
-                    [self.mapView addOverlay:self.route.polyline];
-                }
-            }];
-            
-            self.leftBarButton.title = NSLocalizedString(@"Clear route", nil);
-        }
+        }];
+        
+        self.leftBarButton.title = NSLocalizedString(@"Clear route", nil);
     }
 }
 
@@ -345,19 +348,30 @@ typedef NS_ENUM(NSUInteger, MapViewState) {
             if ([anObject isKindOfClass:[Bookmark class]]) {
                 Bookmark *bookmark = (Bookmark *)anObject;
                 
-                // Let's find point annotation that corresponds to the deleted bookmark
-                MKPointAnnotation *bookmarkPointAnnotation;
-                
-                for (MKPointAnnotation *pointAnnotation in self.mapView.annotations) {
-                    if (CLCOORDINATES_EQUAL(pointAnnotation.coordinate, bookmark.location.coordinate)) {
-                        bookmarkPointAnnotation = pointAnnotation;
-                        break;
+                if (self.mapViewState == MapViewStateRoute) {
+                    if (self.routeDestionationBookmark == bookmark)
+                    {
+                        self.mapViewState = MapViewStateBookmarks;
+                        
+                        // Free object
+                        self.routeDestionationBookmark = nil;
                     }
                 }
-                
-                // Remove item from map view
-                if (bookmarkPointAnnotation) {
-                    [self.mapView removeAnnotation:bookmarkPointAnnotation];
+                else if (self.mapViewState == MapViewStateBookmarks) {
+                    // Let's find point annotation that corresponds to the deleted bookmark
+                    MKPointAnnotation *bookmarkPointAnnotation;
+                    
+                    for (MKPointAnnotation *pointAnnotation in self.mapView.annotations) {
+                        if (CLCOORDINATES_EQUAL(pointAnnotation.coordinate, bookmark.location.coordinate)) {
+                            bookmarkPointAnnotation = pointAnnotation;
+                            break;
+                        }
+                    }
+                    
+                    // Remove item from map view
+                    if (bookmarkPointAnnotation) {
+                        [self.mapView removeAnnotation:bookmarkPointAnnotation];
+                    }
                 }
             }
         }

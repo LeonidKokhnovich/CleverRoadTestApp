@@ -8,9 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+#define METERS_PER_MILE 1609.344
+
+typedef NS_ENUM(NSUInteger, MapViewState) {
+    MapViewStateNone,
+    MapViewStateBookmarks,
+    MapViewStateRoute
+};
+
+@class Bookmark;
+
 @interface MapViewController : UIViewController
 
-@property (strong, nonatomic) CLLocation *centerAlignmentLocation;
 @property (strong, nonatomic) Bookmark *routeDestionationBookmark;
+@property (nonatomic) MapViewState mapViewState;
+
+- (void)setMapViewVisibleRegion:(MKCoordinateRegion)region;
 
 @end
